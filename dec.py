@@ -1,7 +1,12 @@
-import os, sys, getpass
+import os, sys
+from aes import *
+from rsa import *
+from ast import literal_eval
 
-aes_password="ricardo"
+
+aes_key = 'r'*16
 pkeyname="private.pem"
+
 
 def create_key():
 	f= open(pkeyname,"w+")
@@ -10,13 +15,14 @@ def create_key():
 
 
 def decrypt_(fname):
-	os.system("openssl aes-256-cbc -pass pass:"+aes_password+" -in "+fname+" -d -out "+fname+".1")
-	os.system("openssl rsautl -decrypt -inkey "+pkeyname+" -in "+fname+".1 -out "+fname+".2")
-	os.system("openssl aes-256-cbc -pass pass:"+aes_password+" -in "+fname+".2 -d -out "+fname+".3")
-	os.system("mv "+fname+".3 $(echo "+fname+".3 | sed 's/.enc.3//')")
-	os.system("rm "+fname+"")
-	os.system("rm "+fname+".1")
-	os.system("rm "+fname+".2")
+	key = 'r'*16
+	message = literal_eval(open(fname).read())
+	dec_message = AESCipher(key).decrypt(str(RSACipher().decrypt(message)))
+	dec_name=fname.replace(".enc","")
+	f= open(dec_name,"w+")
+	f.write(str(dec_message))
+	f.close()
+	os.system("rm "+fname)
 
 
 def dec_files(dir_):
@@ -28,7 +34,8 @@ def dec_files(dir_):
 				file=os.path.join(dir_, f)
 				print "Decrypting",file,"..."
 				decrypt_(file)
-	except:
+	except ValueError as e:
+		print e
 		pass
 
 def loop(looped_dir):
