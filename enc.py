@@ -1,6 +1,5 @@
 import os,sys
-from aes import *
-from rsa import *
+from crypto import *
 
 aes_key = 'r'*16
 pkeyname="public.pem"

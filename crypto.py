@@ -1,7 +1,8 @@
 import base64
 import hashlib
-#from Crypto import Random
 from Crypto.Cipher import AES
+import Crypto
+from Crypto.PublicKey import RSA
 
 BS = 16
 pad = lambda s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS).encode()
@@ -28,12 +29,18 @@ class AESCipher(object):
         dec = cipher.decrypt(enc)
         return unpad(dec).decode('utf-8')
 
-'''
-key = 'r'*16
-message ='aaaaaaaaaaaa'
-enc = AESCipher(key).encrypt(message)
-dec = AESCipher(key).decrypt(enc)
 
-print(enc)
-print(dec)
-'''
+class RSACipher(object):
+
+	def encrypt(self, message):
+		f = open('public.pem', 'rb')
+		publickey = RSA.importKey(f.read())
+		encrypted = publickey.encrypt(message, 32)
+		return encrypted
+
+	def decrypt(self, enc_message):
+		f = open('private.pem', 'rb')
+		private = RSA.importKey(f.read())
+		decrypted = private.decrypt(enc_message)
+		return decrypted
+

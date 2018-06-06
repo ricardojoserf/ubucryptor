@@ -1,8 +1,6 @@
 import os, sys
-from aes import *
-from rsa import *
+from crypto import *
 from ast import literal_eval
-
 
 aes_key = 'r'*16
 pkeyname="private.pem"
