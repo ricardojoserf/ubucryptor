@@ -30,10 +30,10 @@ def dec_files(dir_):
 			splitted = f.split(".")
 			if splitted[len(splitted)-1]=="enc":
 				file=os.path.join(dir_, f)
-				print "Decrypting",file,"..."
+				print ("Decrypting "+file+"...")
 				decrypt_(file)
 	except ValueError as e:
-		print e
+		print (e)
 		pass
 
 def loop(looped_dir):
@@ -44,7 +44,7 @@ def loop(looped_dir):
 	for root,directories,filenames in os.walk(looped_dir):
 		for directory in directories:
 			dir=os.path.join(root, directory)
-			print "Entering",dir,"..."
+			print ("Entering"+dir+"...")
 			dec_files(dir)
 	os.system("rm "+pkeyname)
 

