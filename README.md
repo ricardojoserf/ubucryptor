@@ -1,5 +1,5 @@
 # ubucryptor
-Encrypting and decrypting files in Ubuntu. Encrypting the same file extensions than Wannacry 
+File encryptor and decryptor in Linux with Python. Using the same file extensions than Wannacry
 
 ## Usage
 
@@ -30,7 +30,18 @@ cat dec.py crypto.py >> temp_dec.py && pyinstaller -F temp_dec.py && rm temp_dec
 
 ## Requirements
 
+Python 2.x:
+
 ```
 sudo pip install pyinstaller
 ```
 
+Python 3.x:
+
+```
+sudo pip3 install pyinstaller
+```
+
+## Note
+
+Tested both in Python2.x (2.7.15rc1) and Python 3.x (3.6.7)
