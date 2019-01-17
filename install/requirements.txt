@@ -1,2 +1,0 @@
-pycrypto==2.6.1
-PyInstaller==3.4
