@@ -14,7 +14,7 @@ def create_key():
 
 def encrypt_(fname):
 	message =open(fname).read()
-	enc_message = RSACipher().encrypt(str(AESCipher(aes_key).encrypt(message)))
+	enc_message = RSACipher().encrypt(str(AESCipher(aes_key).encrypt(message)).encode('utf-8'))
 	enc_name=fname+".enc"
 	f= open(enc_name,"w+")
 	f.write(str(enc_message))

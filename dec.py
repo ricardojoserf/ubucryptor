@@ -15,13 +15,13 @@ def create_key():
 def decrypt_(fname):
 	key = 'r'*16
 	message = literal_eval(open(fname).read())
-	dec_message = AESCipher(key).decrypt(str(RSACipher().decrypt(message)))
+	b = (RSACipher().decrypt(message[0]))
+	dec_message = AESCipher(key).decrypt(b)
 	dec_name=fname.replace(".enc","")
 	f= open(dec_name,"w+")
 	f.write(str(dec_message))
 	f.close()
 	os.system("rm "+fname)
-
 
 def dec_files(dir_):
 	try:

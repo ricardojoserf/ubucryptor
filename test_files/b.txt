@@ -1,1 +1,2 @@
-aaaa
+This is text in test_files/b.txt
+
