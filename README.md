@@ -25,7 +25,7 @@ cat dec.py crypto.py >> temp_dec.py && pyinstaller -F temp_dec.py && rm temp_dec
 
 ## Example
 
-![Screenshot](https://i.imgur.com/undefined.png)
+![Screenshot](https://i.imgur.com/iXe4Abt.png)
 
 
 ## Requirements
